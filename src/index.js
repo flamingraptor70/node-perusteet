@@ -25,6 +25,9 @@ const server = http.createServer((req, res) => {
   } else if (method === 'POST' && reqParts[1] === 'items') {
     console.log('POSTing a new item');
     postItem(req, res);
+  } else if (method === 'DELETE' && reqParts[1] === 'items') {
+    console.log('DELETing wanted item');
+    deleteItem(req, res);
   } else {
     res.writeHead(400, {'Content-Type': 'application/json'});
     res.end('{"message": "404 Resource not found!"}');
