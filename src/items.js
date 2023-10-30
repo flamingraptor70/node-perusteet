@@ -1,4 +1,4 @@
-// mock items data
+//Mock all items data
 const items = [
   {id: 5, name: 'porkkana'},
   {id: 6, name: 'omena'},
@@ -11,6 +11,8 @@ const getItems = (res) => {
   res.end(`{"message": "All items", "items": ${jsonItems}}`);
 };
 
+
+//Get item by its :ID
 const getItemsById = (res, id) => {
   // TODO: if item with id exists send it, otherwise sen 404
   console.log('getItemsById', id);
@@ -24,6 +26,7 @@ const getItemsById = (res, id) => {
   }
 };
 
+//Creating item by its :ID
 const postItem = (req, res) => {
   let body = [];
   req
@@ -51,4 +54,18 @@ const postItem = (req, res) => {
       });
 };
 
+
+//DELETE item by its :ID
+const deleteItem = (res, id) => {
+  //TODO: if item with id exists delete it, otherwise sen 404
+}
+
+
+//Update item by its :ID
+const putItem = (res, id) =>{
+  //TODO: if item with id exists  it, otherwise sen 404
+} 
+
+
+//Exporting functions to other js files
 export {getItems, getItemsById, postItem};

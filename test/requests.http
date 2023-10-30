@@ -18,5 +18,14 @@ content-type: application/json
 POST http://127.0.0.1:3000/items
 content-type: application/json
 
+
+### DELETE /items/:id
+DELETE http://127.0.0.1:3000/items
+
+
+### PUT /items/:id
+PUT http://127.0.0.1:3000/items
+
+
 {"not_data": "not_data"}
 
