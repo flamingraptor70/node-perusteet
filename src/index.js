@@ -1,5 +1,5 @@
 import http from 'http';
-import {getItems, getItemsById, postItem} from './items.js';
+import {getItems, getItemsById, postItem, deleteItem, putItem} from './items.js';
 const hostname = '127.0.0.1';
 const port = 3000;
 
@@ -16,6 +16,7 @@ const server = http.createServer((req, res) => {
     res.end('<p>documentation comes here</p>');
     res.end();
     // eslint-disable-next-line max-len
+
   } else if (method === 'GET' && reqParts[1] === 'items' && reqParts[2]) {
     console.log('GETting items with id', reqParts[2]);
     getItemsById(res, reqParts[2]);
@@ -25,10 +26,13 @@ const server = http.createServer((req, res) => {
   } else if (method === 'POST' && reqParts[1] === 'items') {
     console.log('POSTing a new item');
     postItem(req, res);
-  } else if (method === 'DELETE' && reqParts[1] === 'items') {
-    console.log('DELETing wanted item');
-    deleteItem(req, res);
-  } else {
+  } else if (method === 'DELETE' && reqParts[1] === 'items' && reqParts[2]) {
+    console.log('DELETing wanted item', reqParts[2]);
+    deleteItem(req, res, reqParts[2]);
+  } else if (method === 'PUT' && reqParts[1] === 'items' && reqParts[2]) {
+    console.log('UPDATING item with id', reqParts[2]);
+    putItem(req, res, reqParts[2]);
+  } else{
     res.writeHead(400, {'Content-Type': 'application/json'});
     res.end('{"message": "404 Resource not found!"}');
   }
@@ -41,4 +45,4 @@ server.listen(port, hostname, () => {
 
 // TODO add deleteItem(), putItem() and routing for those in index.js:
 
-export {getItems, getItemsById, postItem};
+export {getItems, getItemsById, postItem, deleteItem, putItem};

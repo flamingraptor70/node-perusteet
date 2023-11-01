@@ -20,11 +20,11 @@ content-type: application/json
 
 
 ### DELETE /items/:id
-DELETE http://127.0.0.1:3000/items
+DELETE http://127.0.0.1:3000/items/6
 
 
 ### PUT /items/:id
-PUT http://127.0.0.1:3000/items
+PUT http://127.0.0.1:3000/items/19
 
 
 {"not_data": "not_data"}
