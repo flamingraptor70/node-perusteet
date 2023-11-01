@@ -56,7 +56,7 @@ const postItem = (req, res) => {
 
 
 //DELETE item by its :ID
-const deleteItem = (req, res, id) => {
+const deleteItem = (res, id) => {
   console.log('deleteItem', id);
   const index = items.findIndex((item) => item.id == id);
   if (index !== -1) {
