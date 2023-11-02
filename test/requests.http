@@ -1,31 +1,19 @@
-
 ### GET /
-GET http://127.0.0.1:3000/
+GET http://localhost:3000/
 
 ### GET /items
-GET http://127.0.0.1:3000/items
+GET http://localhost:3000/api/items
 
 ### GET /items/:id
-GET http://127.0.0.1:3000/items/23
+GET http://localhost:3000/api/items/20
 
-### POST new item
-POST http://127.0.0.1:3000/items
+### POST /items
+POST http://localhost:3000/api/items
 content-type: application/json
 
 {"name": "kurkku"}
 
-### POST error data
-POST http://127.0.0.1:3000/items
-content-type: application/json
+### POST /items error
+POST http://localhost:3000/api/items
 
-
-### DELETE /items/:id
-DELETE http://127.0.0.1:3000/items/6
-
-
-### PUT /items/:id
-PUT http://127.0.0.1:3000/items/19
-
-
-{"not_data": "not_data"}
-
+{"jotain": "jotan"}
