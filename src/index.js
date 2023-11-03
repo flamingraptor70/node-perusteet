@@ -26,6 +26,18 @@ app.get('/kukkuu', (request, response) => {
 
 // example generic items api
 
+
+app.set('view engine', 'pug');
+app.set('views', 'src/views');
+
+app.get('/', (req, res) => {
+  // any dynamic data can be passed to the template as an object 
+  const values = {title: 'My REST API', message: 'Docs will be here!'}; 
+  // use name of the template file without extension
+  res.render('index', values);
+});
+
+
 // get all items
 app.get('/api/items', getItems);
 // get items by id
