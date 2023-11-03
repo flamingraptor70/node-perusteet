@@ -2,7 +2,7 @@
 GET http://localhost:3000/
 
 ### GET /items
-GET http://localhost:3000/api/items?limit=1
+GET http://localhost:3000/api/items
 
 ### GET /items/:id
 GET http://localhost:3000/api/items/20

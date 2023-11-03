@@ -4,24 +4,7 @@ const items = [
   {id: 6, name: 'omena'},
   {id: 19, name: 'apelsiini'},
 ];
-
-/**
- *  Get all items
- * 
- * @param {*} req --http request
- * @param {*} res --http response
- */
-
-
-const getItems = (req, res) => {
-  const limit = req.query.limit;
-  //TODO: check that the param value is int before
-  if(limit){
-    res.json(items.slice(0,limit));
-  } else{
-    res.json(items);
-  }
-
+const getItems = (res) => {
   res.writeHead(200, {'Content-Type': 'application/json'});
   // mock data
   const jsonItems = JSON.stringify(items);
