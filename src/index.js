@@ -23,7 +23,8 @@ app.get("/", (req, res) => {
   });
 });
 
-
+// server static files
+app.use('/public', express.static(path.join(__dirname, 'public')))
 
 
 // example generic items api
@@ -41,7 +42,6 @@ app.delete("/api/items");
 
 // media endpoints
 app.get("/api/media", getMedia);
-
 // user endpoints
 app.get("/api/user", getUsers);
 

@@ -7,8 +7,7 @@ const items = [
 
 /**
  * Get all items request handler
- * Amount of  objects in response can be limited by using 'limit' query param
- * 
+ * Amount of  objects in response can be limited by using 'limit' query parameter
  * @param {object} req - http request 
  * @param {object} res - http response
  */
@@ -22,10 +21,11 @@ const getItems = (req, res) => {
   }
 };
 
+
 /**
- * 
- * @param {*} req 
- * @param {*} res 
+ * Get item by id
+ * @param {Object}} req 
+ * @param {Object}} res 
  */
 const getItemsById = (req, res) => {
   // if item with id exists send it, otherwise send 404
@@ -39,64 +39,61 @@ const getItemsById = (req, res) => {
   }
 };
 
+/**
+ * Add a new item
+ * @param {Object} req - The request object
+ * @param {Object} res - The response object
+ */
 const postItem = (req, res) => {
   console.log('new item posted', req.body);
-  // TODO: check last weeks example for generating an id
   if (req.body.name) {
-    items.push({id: 0, name: req.body.name});
-    res.sendStatus(201);
+    const id = items.length + 1; // Generate a new id
+    items.push({id, name: req.body.name});
+    res.status(201).json({id, name: req.body.name});
   } else {
-    res.sendStatus(400);
+    res.status(400).json({message: "Bad request."});
   }
 };
 
-//DELETE item by its :ID
-const deleteItem = (res, id) => {
-  console.log('deleteItem', id);
-  const index = items.findIndex((item) => item.id == id);
+
+// Modify item
+/**
+ * Modify item by its :ID
+ * 
+ * @param {object} req - http request 
+ * @param {object} res - http response
+ */
+const putItem = (req, res) => {
+  const id = parseInt(req.params.id);
+  const { name } = req.body;
+  const index = items.findIndex(item => item.id === id);
+
   if (index !== -1) {
-    // Item found, delete it from the array
-    items.splice(index, 1);
-
-    res.writeHead(200, {'Content-Type': 'application/json'});
-    res.end(`{"message": "Item with id ${id} deleted.}`); // No response body for successful deletion
+    items[index] = { id, name };
+    res.status(200).json({ message: `Item with id ${id} updated.` });
   } else {
-    // Item not found
-    res.writeHead(404, {'Content-Type': 'application/json'});
-    res.end('{"message": "Item not found"}');
+    res.status(404).json({ message: 'Item not found' });
   }
 };
 
+// Remove existing item
+/**
+ * Delete item by its :ID
+ * 
+ * @param {object} req - http request 
+ * @param {object} res - http response
+ */
+const deleteItem = (req, res) => {
+  const id = parseInt(req.params.id);
+  const index = items.findIndex(item => item.id === id);
 
-//Update item by its :ID
-  //TODO: if item with id exists  it, otherwise sen 404
-  const putItem = (req, res, id) => {
-    let body = [];
-    req
-      .on('error', (err) => {
-        console.error(err);
-      })
-      .on('data', (chunk) => {
-        body.push(chunk);
-      })
-      .on('end', () => {
-        body = Buffer.concat(body).toString();
-        console.log('req body', body);
-        body = JSON.parse(body);
-  
-        const index = items.findIndex((item) => item.id == id);
-  
-        if (index !== -1) {
-          items[index] = {id, name: body.name};
-          res.writeHead(200, {'Content-Type': 'application/json'});
-          res.end({"message": "Item with id ${id} updated."});
-        } else {
-          res.writeHead(404, {'Content-Type': 'application/json'});
-          res.end('{"message": "Item not found."}');
-        }
-      });
-  };
-
+  if (index !== -1) {
+    items.splice(index, 1);
+    res.status(200).json({ message: `Item with id ${id} deleted.` });
+  } else {
+    res.status(404).json({ message: 'Item not found' });
+  }
+};
 
 // TODO: add deleteItem(), putItem() and routing for those in index.js
 export {getItems, getItemsById, postItem, deleteItem, putItem};
