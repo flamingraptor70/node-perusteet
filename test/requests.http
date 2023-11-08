@@ -1,11 +1,12 @@
 ### GET /
 GET http://localhost:3000/
 
+### ITEMS ###
 ### GET /items
-GET http://localhost:3000/api/items?limit=x
+GET http://localhost:3000/api/items
 
 ### GET /items/:id
-GET http://localhost:3000/api/items/20
+GET http://localhost:3000/api/items/6
 
 ### POST /items
 POST http://localhost:3000/api/items
@@ -14,20 +15,76 @@ content-type: application/json
 {"name": "kurkku"}
 
 ### POST /items error
-POST http://localhost:3000/api/items
+POST http://localhost:3000/items
 
 {"jotain": "jotan"}
 
-### GET /kukkuu
-GET http://localhost:3000/kukkuu
+### DELETE /items/:id
+DELETE http://localhost:3000/api/items/5
 
-### GET /something-else
-GET http://localhost:3000/morjes
+### PUT /items/:id
+PUT http://localhost:3000/api/items/6
+content-type: application/json
 
+{"name": "updated omena"}
+
+
+
+### USERS ###
 ### GET all users
 GET http://localhost:3000/api/user
 
+### GET user by id
+GET http://localhost:3000/api/user/305
+
+### POST /api/user
+POST http://localhost:3000/api/user
+content-type: application/json
+
+{
+    "username": "new username",
+    "password": "new password",
+    "email": "new email"
+}
+
+### PUT /api/user/:id
+PUT http://localhost:3000/api/user/260
+content-type: application/json
+{
+    "username": "updated username",
+    "password": "updated password"
+}
+
+### DELETE /api/user/:id
+DELETE http://localhost:3000/api/user/305
+
+
+
+### MEDIA ###
 ### GET all media items
 GET http://localhost:3000/api/media
 
+### GET media by id
+GET http://localhost:3000/api/media/9632
 
+### POST /api/media
+POST http://localhost:3000/api/media
+content-type: application/json
+{
+  "filename": "kdh4.jpg",
+  "title": "New image",
+  "description": "The description of the new image",
+  "user_id": 305,
+  "media_type": "image/jpeg"
+}
+
+### PUT /api/media/:id
+PUT http://localhost:3000/api/media/9626
+content-type: application/json
+{
+  "title": "Basement modified",
+  "description": "Some new description"
+}
+
+### DELETE /api/media/:id
+DELETE http://localhost:3000/api/media/9626

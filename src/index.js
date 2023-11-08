@@ -1,9 +1,9 @@
 import express from "express";
-import path from "path";
+import path, { dirname } from "path";
 import { fileURLToPath } from "url";
-import { getItems, getItemsById, postItem } from "./items.js";
-import { getUsers, } from "./user.js";
-import { getMedia } from "./media.js";
+import { getItems, getItemsById, postItem, deleteItem, putItem } from "./items.js";
+import { getUsers, getUserById, postUser, deleteUser, putUser } from "./user.js";
+import { getMedia, getMediaById, postMedia, putMedia, deleteMedia } from "./media.js";
 
 const hostname = "127.0.0.1";
 const app = express(); // create express app
@@ -37,8 +37,9 @@ app.get('/:message', (req, res) => {
 });
 
 
-// server static files
-app.use('/public', express.static(path.join(__dirname, 'public')))
+// server static file from public folder
+app.use(express.json()) // for parsing application/json
+app.use('/static', express.static(path.join(__dirname, 'public')));
 
 
 // API items endpoints
@@ -47,11 +48,12 @@ app.get("/api/items", getItems);
 // get items by id
 app.get("/api/items/:id", getItemsById);
 // modify
-app.put("/api/items");
+app.put("/api/items", putItem);
 // add new item
 app.post("/api/items", postItem);
 // remove existing item
-app.delete("/api/items");
+app.delete("/api/items", deleteItem);
+
 
 // media endpoints
 // get all media
@@ -66,12 +68,11 @@ app.put('/api/media/:id', putMedia);
 app.delete('/api/media/:id', deleteMedia);
 
 
-
 // user endpoints
 //get all users
 app.get("/api/user", getUsers);
 // get user by id
-app.get('/api/user/:id', getUserById);
+app.get('/api/user/:id' , getUserById);
 // add new user
 app.post('/api/user', postUser);
 // put user
