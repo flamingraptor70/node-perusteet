@@ -4,4 +4,5 @@ const getUsers = (req, res) => {
   res.json(users);
 };
 
+
 export {getUsers};

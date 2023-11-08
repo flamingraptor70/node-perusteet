@@ -52,6 +52,7 @@ const mediaItems = [
     },
   ];
   
+  
   const getMedia = (req, res) => {
     res.json(mediaItems);
   };
