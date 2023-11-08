@@ -2,7 +2,7 @@
 GET http://localhost:3000/
 
 ### GET /items
-GET http://localhost:3000/api/items
+GET http://localhost:3000/api/items?limit=x
 
 ### GET /items/:id
 GET http://localhost:3000/api/items/20
@@ -17,3 +17,17 @@ content-type: application/json
 POST http://localhost:3000/api/items
 
 {"jotain": "jotan"}
+
+### GET /kukkuu
+GET http://localhost:3000/kukkuu
+
+### GET /something-else
+GET http://localhost:3000/morjes
+
+### GET all users
+GET http://localhost:3000/api/user
+
+### GET all media items
+GET http://localhost:3000/api/media
+
+
