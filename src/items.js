@@ -50,5 +50,53 @@ const postItem = (req, res) => {
   }
 };
 
+//DELETE item by its :ID
+const deleteItem = (res, id) => {
+  console.log('deleteItem', id);
+  const index = items.findIndex((item) => item.id == id);
+  if (index !== -1) {
+    // Item found, delete it from the array
+    items.splice(index, 1);
+
+    res.writeHead(200, {'Content-Type': 'application/json'});
+    res.end(`{"message": "Item with id ${id} deleted.}`); // No response body for successful deletion
+  } else {
+    // Item not found
+    res.writeHead(404, {'Content-Type': 'application/json'});
+    res.end('{"message": "Item not found"}');
+  }
+};
+
+
+//Update item by its :ID
+  //TODO: if item with id exists  it, otherwise sen 404
+  const putItem = (req, res, id) => {
+    let body = [];
+    req
+      .on('error', (err) => {
+        console.error(err);
+      })
+      .on('data', (chunk) => {
+        body.push(chunk);
+      })
+      .on('end', () => {
+        body = Buffer.concat(body).toString();
+        console.log('req body', body);
+        body = JSON.parse(body);
+  
+        const index = items.findIndex((item) => item.id == id);
+  
+        if (index !== -1) {
+          items[index] = {id, name: body.name};
+          res.writeHead(200, {'Content-Type': 'application/json'});
+          res.end({"message": "Item with id ${id} updated."});
+        } else {
+          res.writeHead(404, {'Content-Type': 'application/json'});
+          res.end('{"message": "Item not found."}');
+        }
+      });
+  };
+
+
 // TODO: add deleteItem(), putItem() and routing for those in index.js
-export {getItems, getItemsById, postItem};
+export {getItems, getItemsById, postItem, deleteItem, putItem};
