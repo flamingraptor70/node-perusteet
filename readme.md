@@ -1,7 +1,7 @@
 # Assigment for Database material
 
 ## Diagram of the database structure
-
+![alt text](/image/mediashare.drawio.png)
 
 ## Examples of UPDATE / DELETE and other manipulations
 - #### Update a user's username or password
