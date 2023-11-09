@@ -15,6 +15,11 @@ const __dirname = path.dirname(__filename);
 app.set("view engine", "pug");
 app.set("views", "src/views");
 
+//static content
+app.use('/docs', express.static(path.join(__dirname, '../docs')));
+app.use(express.json()) // for parsing application/json
+app.use('/static', express.static(path.join(__dirname, 'public')));
+
 // dynamic content rendering of PUG
 app.get("/", (req, res) => {
   res.render("index", {
@@ -36,10 +41,6 @@ app.get('/:message', (req, res) => {
   res.render('home', values);
 });
 
-
-// server static file from public folder
-app.use(express.json()) // for parsing application/json
-app.use('/static', express.static(path.join(__dirname, 'public')));
 
 
 // API items endpoints
