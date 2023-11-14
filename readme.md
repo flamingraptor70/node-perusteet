@@ -1,39 +1,32 @@
 # Assigment for NodeJS Express / Pug
 
-## What have been done
+## Starting server
+1. Clone this repo
 
-### - HTML side
-- Was done dynamic HTML page with "Express" and "Pug"
-- Server static file from public folder
+2. Install node-modules
+```npm i```
 
-### - API / Server side
-1. #### Items
-- `GET`
-- `GET by :id`
-- `PUT` 
-- `POST`
-- `DELETE`
-2. #### Users
-- `GET`
-- `GET by :id`
-- `PUT` 
-- `POST`
-- `DELETE`
-3. #### Media
-- `GET`
-- `GET by :id`
-- `PUT` 
-- `POST`
-- `DELETE`
- 
-4. #### Used JSDocs comments
+3. Installing nodemon utility/frameworks for node.js
+```npm i nodemon```
+```npm i express```
+```npm i pug```
 
-## Faced problems
-- Early problems with servering static file from public folder
+4. Run server with npm run dev code
+```npm run dev ```
 
-## Examples
+5. Go to the website with the local server link
+``` Server running at http://127.0.0.1:3000/ ```
+
+## This REST API has basic functionalities of:
+
+- Static file server
+- Routing
+- Middlewares
+- Support template engines like "pug.js"
+- Express application generator
+
+## Examples of requests
 ### Get all media items
-
 ```http
 GET /api/media
 ```
@@ -95,7 +88,6 @@ Response:
 
 
 ### Get all users
-
 ```http
 GET /api/user
 ```
