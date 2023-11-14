@@ -18,7 +18,7 @@ const getItemsById = (res, id) => {
   console.log('getItemsById', id);
   const item = items.find((element) => element.id == id);
   if (item) {
-    res.writeHead(200, {'Content-Type': 'application/json'});
+    res.writeHead(201, {'Content-Type': 'application/json'});
     res.end(JSON.stringify(item));
   } else {
     res.writeHead(400, {'Content-Type': 'application/json'});
@@ -93,11 +93,11 @@ const deleteItem = (res, id) => {
   
         if (index !== -1) {
           items[index] = {id, name: body.name};
-          res.writeHead(200, {'Content-Type': 'application/json'});
-          res.end({"message": "Item with id ${id} updated."});
+          res.writeHead(201, {'Content-Type': 'application/json'});
+          res.end(JSON.stringify({"message": `Item with id ${id} updated`}));
         } else {
           res.writeHead(404, {'Content-Type': 'application/json'});
-          res.end('{"message": "Item not found."}');
+          res.end(JSON.stringify({"message": "Item not found."}));
         }
       });
   };
