@@ -16,7 +16,7 @@
 ``` Server running at http://127.0.0.1:3000/ ```
 
 ## This REST API has basic functionalities of:
-- GETting whole list 
+- GETting whole list from mock data
 - GETting specific item by :id 
 - POSTing item with +1 from previous :id
 - DELETEing item by :id 
